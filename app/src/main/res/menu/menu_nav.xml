@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/home_icon"
+        android:title="@string/home"
+        android:checked="true"/>
+
+    <item android:title="@string/categories">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_breakfast"
+                    android:icon="@drawable/yellow_arrow"
+                    android:title="@string/breakfast" />
+                <item
+                    android:id="@+id/nav_lunch"
+                    android:title="@string/lunch"
+                    android:icon="@drawable/yellow_arrow" />
+                <item
+                    android:icon="@drawable/yellow_arrow"
+                    android:id="@+id/nav_dinner"
+                    android:title="@string/dinner" />
+                <item
+                    android:title="@string/deserts"
+                    android:id="@+id/nav_deserts"
+                    android:icon="@drawable/yellow_arrow" />
+                <item
+                    android:id="@+id/nav_soup"
+                    android:icon="@drawable/yellow_arrow"
+                    android:title="@string/soups" />
+                <item
+                    android:id="@+id/nav_drinks"
+                    android:icon="@drawable/yellow_arrow"
+                    android:title="@string/drinks" />
+            </group>
+        </menu>
+    </item>
+</menu>

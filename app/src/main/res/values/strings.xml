@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Recipes</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--    Drawer options-->
+    <string name="breakfast">Breakfast</string>
+    <string name="deserts">Deserts</string>
+    <string name="dinner">Dinner</string>
+    <string name="drinks">Drinks</string>
+    <string name="lunch">Lunch</string>
+    <string name="soups">Soups</string>
+    <string name="home">Home</string>
+    <!--    Image data-->
+    <string name="img_title">FavRecipes</string>
+    <string name="img_description">All you need is love. But a little chocolate now and then doesn\'t hurt.</string>
+    <string name="categories">Categories:</string>
+    <!--    Drawer parameters-->
+    <string name="nav_open_drawer">Open navigation drawer</string>
+    <string name="nav_close_drawer">Close navigation drawer</string>
+    <string name="sqlDrinks">SELECT recipe.id, recipe.name, recipe.duration, recipe.img FROM `recipe` INNER JOIN category WHERE recipe.id = category.recipe_id AND category.name = \'Drinks\'</string>
+
+</resources>
