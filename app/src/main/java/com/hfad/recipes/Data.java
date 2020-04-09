@@ -76,31 +76,48 @@ public class Data {
     public Category[] fillCategories(){
         Category[] category_list;
         category_list = new Category[]{
-                new Category("Salads", 3),
-                new Category("Drinks", 1),
-                new Category("Drinks", 2),
-                new Category("Salads", 4),
-                new Category("Salads", 5),
-                new Category("Salads", 6),
-                new Category("Lunch", 4),
-                new Category("Lunch", 5),
-                new Category("Lunch", 7),
-                new Category("Lunch", 8),
-                new Category("Dinner", 7),
-                new Category("Dinner", 9),
-                new Category("Dinner", 10),
-                new Category("Soup", 10),
-                new Category("Soup", 11),
-                new Category("Soup", 12),
-                new Category("Breakfast", 13),
-                new Category("Breakfast", 14),
-                new Category("Breakfast", 15),
-                new Category("Desert", 16),
-                new Category("Desert", 17),
-                new Category("Desert", 18),
-                new Category("Breakfast", 18)
+                new Category("Salads"), // 1
+                new Category("Drinks"), // 2
+                new Category("Lunch"), // 3
+                new Category("Dinner"), // 4
+                new Category("Soup"), // 5
+                new Category("Breakfast"), // 6
+                new Category("Desert") // 7
         };
         return category_list;
+    }
+    public Recipe_Category[] fillJunctionTable(){
+        Recipe_Category[] recipe_categories;
+        recipe_categories = new Recipe_Category[]{
+                new Recipe_Category(1, 2),
+                new Recipe_Category(1, 7),
+                new Recipe_Category(2, 2),
+                new Recipe_Category(3, 1),
+                new Recipe_Category(3, 6),
+                new Recipe_Category(4, 1),
+                new Recipe_Category(5, 3),
+                new Recipe_Category(6, 3),
+                new Recipe_Category(6, 4),
+                new Recipe_Category(7, 3),
+                new Recipe_Category(7, 4),
+                new Recipe_Category(8, 3),
+                new Recipe_Category(8, 4),
+                new Recipe_Category(9, 3),
+                new Recipe_Category(10, 5),
+                new Recipe_Category(10, 3),
+                new Recipe_Category(10, 4),
+                new Recipe_Category(11, 5),
+                new Recipe_Category(12, 5),
+                new Recipe_Category(13, 6),
+                new Recipe_Category(13, 4),
+                new Recipe_Category(14, 6),
+                new Recipe_Category(15, 6),
+                new Recipe_Category(16, 7),
+                new Recipe_Category(17, 7),
+                new Recipe_Category(18, 7),
+                new Recipe_Category(18, 6)
+        };
+        return recipe_categories;
     }
     private static String[] RecipeInstruction = {
             "Place 9 cups of watermelon cubes in a blender; blend on high until very smooth. Strain juice through a mesh strainer into a large pitcher. Pour the wine, vodka, triple sec, and simple syrup into the pitcher. Stir to combine. Mix the remaining 3 cups of watermelon cubes, the lime quarters, orange sections, and blueberries into the sangria. Chill for 4 hours before serving.",

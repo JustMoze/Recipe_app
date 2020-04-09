@@ -74,7 +74,7 @@ public class Breakfast_fragment extends Fragment {
             try {
                 db = recipeDatabaseHelper.getReadableDatabase();
                 Log.d("Duombaze", "db was readed");
-                String sql = "SELECT recipe._ID, recipe.NAME, recipe.DURATION, recipe.IMAGE FROM `recipe` INNER JOIN category WHERE recipe._ID = category.RECIPE_ID AND category.NAME = 'Breakfast'";
+                String sql = "SELECT recipe._ID, recipe.NAME, recipe.DURATION, recipe.IMAGE FROM `recipe` INNER JOIN recipe_category ON recipe._ID = recipe_category.recipe_ID INNER JOIN category ON category._ID = recipe_category.category_ID AND category.NAME = 'Breakfast'";
                 cursor = db.rawQuery(sql, null);
                 if (cursor == null) return null;
                 else {

@@ -13,6 +13,7 @@ public class RecipeDatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_1 = "recipe";
     private static final String TABLE_2 = "ingredient";
     private static final String TABLE_3 = "category";
+    private static final String TABLE_4 = "recipe_category";
     private static SQLiteDatabase db;
     // Capitalize class name
     Data data_to_fill = new Data();
@@ -35,9 +36,13 @@ public class RecipeDatabaseHelper extends SQLiteOpenHelper {
 
         Category[] categoriesToInsert = data_to_fill.fillCategories();
         insertCategories(db, categoriesToInsert);
+
+        Recipe_Category[] recipe_categories = data_to_fill.fillJunctionTable();
+        insertAllJunctionData(db, recipe_categories);
     }
     private void updateRecipesDatabase(SQLiteDatabase db, int oldVersion, int newVersion){
         if (oldVersion < 1){
+            // recipe table
             db.execSQL("CREATE TABLE " + TABLE_1 + " (_ID INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + "NAME TEXT,"
                     + "DURATION TEXT,"
@@ -49,10 +54,11 @@ public class RecipeDatabaseHelper extends SQLiteOpenHelper {
                     + "RECIPE_ID INTEGER,"
                     + "FOREIGN KEY(RECIPE_ID) REFERENCES "+ TABLE_1 +"(_ID));");
             db.execSQL("CREATE TABLE " + TABLE_3 + " (_ID INTEGER PRIMARY KEY AUTOINCREMENT, "
-                    + "NAME TEXT, "
-                    + "RECIPE_ID INTEGER,"
-                    + "FOREIGN KEY(RECIPE_ID) REFERENCES " + TABLE_1 +"(_ID));");
-
+                    + "NAME TEXT);");
+            db.execSQL("CREATE TABLE " + TABLE_4 + " (recipe_ID INTEGER,  "
+                    + "category_ID INTEGER,"
+                    + "FOREIGN KEY(recipe_ID) REFERENCES " + TABLE_1 + "(_ID),"
+                    + "FOREIGN KEY(category_ID) REFERENCES " + TABLE_3 + "(_ID));");
         } else {
             // if version will change it self than code written here will be executed
         }
@@ -78,9 +84,14 @@ public class RecipeDatabaseHelper extends SQLiteOpenHelper {
     private void insertCategory(SQLiteDatabase db, Category category){
         ContentValues categoryValues = new ContentValues();
         categoryValues.put("NAME", category.getCategory_name());
-        categoryValues.put("RECIPE_ID", category.getForeign_key());
-
         db.insert(TABLE_3, null, categoryValues);
+    }
+    private void insertJunctionData(SQLiteDatabase db, Recipe_Category recipe_category){
+        ContentValues junctionValues = new ContentValues();
+        junctionValues.put("recipe_ID", recipe_category.getRecipe_id());
+        junctionValues.put("category_ID", recipe_category.getCategry_id());
+
+        db.insert(TABLE_4, null, junctionValues);
     }
     // inserting multiple data
     private void insertRecipes(SQLiteDatabase db, Recipe[] recipes){
@@ -96,6 +107,11 @@ public class RecipeDatabaseHelper extends SQLiteOpenHelper {
     private void insertCategories(SQLiteDatabase db, Category[] categories){
         for (Category category : categories){
             insertCategory(db, category);
+        }
+    }
+    private void insertAllJunctionData(SQLiteDatabase db, Recipe_Category[] recipe_categories){
+        for (Recipe_Category recipe_category : recipe_categories){
+            insertJunctionData(db, recipe_category);
         }
     }
 }

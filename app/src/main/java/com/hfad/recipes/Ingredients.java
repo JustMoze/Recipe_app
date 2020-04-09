@@ -1,10 +1,10 @@
 package com.hfad.recipes;
 
 public class Ingredients {
-    int _id;
-    String name;
-    String quantity;
-    int foreign_key;
+    private int _id;
+    private String name;
+    private String quantity;
+    private int foreign_key;
 
     public Ingredients(){}
     public Ingredients(String name, String quantity){

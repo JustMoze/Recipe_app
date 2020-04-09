@@ -1,19 +1,15 @@
 package com.hfad.recipes;
 
 public class Category {
-    int _id;
-    String category_name;
-    int foreign_key;
+    private int _id;
+    private String category_name;
 
     public Category(){}
 
     public Category(String name){
         this.category_name = name;
     }
-    public Category(String name, int foreign_key){
-        this.category_name = name;
-        this.foreign_key = foreign_key;
-    }
+
     public Category(int id, String name){
         this._id = id;
         this.category_name = name;
@@ -29,5 +25,4 @@ public class Category {
     public int get_id(){
         return this._id;
     }
-    public int getForeign_key() {return this.foreign_key;}
 }
