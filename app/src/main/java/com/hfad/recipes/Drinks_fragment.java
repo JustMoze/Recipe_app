@@ -1,6 +1,7 @@
 package com.hfad.recipes;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
@@ -38,28 +39,34 @@ public class Drinks_fragment extends Fragment {
     private List<Recipe> drinkRecipes = new ArrayList<Recipe>();
     private SQLiteDatabase db;
     private Cursor cursor;
+    private RecipesAdapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
 
+    @Override
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        int randNumber = 7;
+        new GetDrinks().execute(randNumber);
+        adapter = new RecipesAdapter(drinkRecipes);
+        layoutManager = new LinearLayoutManager(getActivity());
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        int randNumber = 7;
-        new GetDrinks().execute(randNumber);
-
         RecyclerView drinksRecycler = (RecyclerView) inflater.inflate(R.layout.fragment_recipes_fragment, container, false);
         drinksRecycler.setHasFixedSize(true);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        RecipesAdapter adapter = new RecipesAdapter(drinkRecipes);
+
         drinksRecycler.setLayoutManager(layoutManager);
         drinksRecycler.setAdapter(adapter);
-
+        adapter.setListener(position -> {
+            int recipe_ID = drinkRecipes.get(position)._id;
+            Intent intent = new Intent(getActivity(), RecipeDetailActivity.class);
+            intent.putExtra(RecipeDetailActivity.RECIPE_ID, recipe_ID);
+            getActivity().startActivity(intent);
+        });
         // set layout appearance
         return drinksRecycler;
-    }
-    // Cause i can't call it in onCreate method
-    @Override
-    public void onStart(){
-        super.onStart();
     }
 
     private class GetDrinks extends AsyncTask<Integer, Void, Boolean>{
@@ -82,6 +89,7 @@ public class Drinks_fragment extends Fragment {
                 else {
                     while (cursor.moveToNext()){
                         Recipe recipe = new Recipe();
+                        recipe._id = cursor.getInt(0);
                         recipe.name = cursor.getString(1);
                         recipe.duration = cursor.getString(2);
                         recipe.recipe_image = cursor.getInt(3);

@@ -19,5 +19,10 @@
     <string name="nav_open_drawer">Open navigation drawer</string>
     <string name="nav_close_drawer">Close navigation drawer</string>
     <string name="sqlDrinks">SELECT recipe.id, recipe.name, recipe.duration, recipe.img FROM `recipe` INNER JOIN category WHERE recipe.id = category.recipe_id AND category.name = \'Drinks\'</string>
-
+    <string name="duration">Duration:</string>
+    <string name="ingredients">Ingredients: </string>
+    <string name="cooking_process">Cooking process: </string>
+    <string name="create_recipe">Create recipe </string>
+    <string name="recipe_info">Detail information</string>
+    <string name="add_icon_title">Create recipe</string>
 </resources>

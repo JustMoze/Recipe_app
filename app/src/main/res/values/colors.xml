@@ -4,4 +4,8 @@
     <color name="colorPrimaryDark">#4a4a4a</color>
     <color name="colorAccent">#f3f3f3</color>
     <color name="navigationDrawerBackground">#dee3e2</color>
+    <color name="card_background">#e1f2fb</color>
+    <color name="detail_background">#effcef</color>
+    <color name="title_background">#e5dfdf</color>
+    <color name="instructions_color">#c2e8ce</color>
 </resources>

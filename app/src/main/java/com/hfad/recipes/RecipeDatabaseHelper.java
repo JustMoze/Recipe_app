@@ -26,15 +26,23 @@ public class RecipeDatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db){
         updateRecipesDatabase(db,  0, DATABASE_VERSION);
+        // Insert data into tables
+        Recipe[] recipesToInsert = data_to_fill.fillRecipes();
+        insertRecipes(db, recipesToInsert);
 
+        Ingredients[] ingredientsToInsert = data_to_fill.fillIngredients();
+        insertIngredients(db, ingredientsToInsert);
 
+        Category[] categoriesToInsert = data_to_fill.fillCategories();
+        insertCategories(db, categoriesToInsert);
     }
     private void updateRecipesDatabase(SQLiteDatabase db, int oldVersion, int newVersion){
-        if (oldVersion == 1){
+        if (oldVersion < 1){
             db.execSQL("CREATE TABLE " + TABLE_1 + " (_ID INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + "NAME TEXT,"
                     + "DURATION TEXT,"
-                    + "IMAGE INTEGER);");
+                    + "IMAGE INTEGER, "
+                    + "INSTRUCTION TEXT);");
             db.execSQL("CREATE TABLE "+ TABLE_2 + "(_ID INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + "NAME TEXT, "
                     + "QUANTITY TEXT, "
@@ -44,18 +52,9 @@ public class RecipeDatabaseHelper extends SQLiteOpenHelper {
                     + "NAME TEXT, "
                     + "RECIPE_ID INTEGER,"
                     + "FOREIGN KEY(RECIPE_ID) REFERENCES " + TABLE_1 +"(_ID));");
-            // Insert data into tables
-            Recipe[] recipesToInsert = data_to_fill.fillRecipes();
-            insertRecipes(db, recipesToInsert);
-
-            Ingredients[] ingredientsToInsert = data_to_fill.fillIngredients();
-            insertIngredients(db, ingredientsToInsert);
-
-            Category[] categoriesToInsert = data_to_fill.fillCategories();
-            insertCategories(db, categoriesToInsert);
 
         } else {
-            // some other code
+            // if version will change it self than code written here will be executed
         }
     }
     // Insert one object to table
@@ -64,6 +63,7 @@ public class RecipeDatabaseHelper extends SQLiteOpenHelper {
         recipeValues.put("NAME", recipe.getName());
         recipeValues.put("DURATION", recipe.getDuration());
         recipeValues.put("IMAGE", recipe.getRecipe_image());
+        recipeValues.put("INSTRUCTION", recipe.getInstruction());
 
         db.insert(TABLE_1, null, recipeValues);
     }

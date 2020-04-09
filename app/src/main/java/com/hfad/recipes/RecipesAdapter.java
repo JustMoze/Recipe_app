@@ -64,9 +64,12 @@ class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.ViewHolder> {
         TextView durationView = cardView.findViewById(R.id.card_duration);
         durationView.setText(recipeList.get(position).duration);
 
-        cardView.setOnClickListener(v -> {
-            if (listener != null){
-                listener.onClick(position);
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null){
+                    listener.onClick(position);
+                }
             }
         });
     }

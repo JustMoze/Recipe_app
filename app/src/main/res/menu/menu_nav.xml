@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/nav_home"
-        android:icon="@drawable/home_icon"
-        android:title="@string/home"
-        android:checked="true"/>
 
     <item android:title="@string/categories">
         <menu>
             <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_all"
+                    android:icon="@drawable/yellow_arrow"
+                    android:title="@string/home" />
                 <item
                     android:id="@+id/nav_breakfast"
                     android:icon="@drawable/yellow_arrow"
