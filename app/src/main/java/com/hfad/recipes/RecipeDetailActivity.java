@@ -47,10 +47,13 @@ public class RecipeDetailActivity extends AppCompatActivity {
         recipeImage.setImageDrawable(ContextCompat.getDrawable(this, imageID));
         recipeImage.setContentDescription(recipe.getName());
         titleView.setText(recipe.getName());
-        durationView.setText(recipe.getDuration());
+        String time = "⏰ " + recipe.getDuration();
+        durationView.setText(time);
 
         TextView ingredientName = findViewById(R.id.recipes_ingredients_list);
         TextView ingredientQuantity = findViewById(R.id.ingredients_quantity);
+        String a = text_ingredients.get(0);
+        String b = text_ingredients.get(1);
         ingredientName.setText(text_ingredients.get(0));
         ingredientQuantity.setText(text_ingredients.get(1));
 
@@ -80,14 +83,13 @@ public class RecipeDetailActivity extends AppCompatActivity {
                             cursor.getInt(2), cursor.getString(3));
                     imageID = cursor.getInt(2);
                 }
-                String sqlCode = "SELECT ingredient.NAME, ingredient.QUANTITY  FROM `ingredient` " +
-                        "INNER JOIN recipe WHERE ingredient.RECIPE_ID = " + id;
+                String sqlCode = "SELECT ingredient.NAME, ingredient.QUANTITY  FROM `ingredient` INNER JOIN recipe ON ingredient.RECIPE_ID = recipe._ID WHERE recipe._ID = " + id;
                 ingredientCursor = db.rawQuery(sqlCode, null);
                 String titleName = "";
                 String quantityText = "";
-                if (ingredientCursor.moveToFirst()){
+                while(ingredientCursor.moveToNext()){
                     titleName += "🛒 " + ingredientCursor.getString(0) + " \n";
-                    quantityText = ingredientCursor.getString(1) + " \n";
+                    quantityText +=  ingredientCursor.getString(1) + " \n";
                 }
                 text_ingredients.add(titleName);
                 text_ingredients.add(quantityText);

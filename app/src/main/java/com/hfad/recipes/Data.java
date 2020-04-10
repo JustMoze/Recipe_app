@@ -1,7 +1,6 @@
 package com.hfad.recipes;
 
 public class Data {
-    private static final int size = 3;
     public Recipe [] fillRecipes(){
         Recipe[] recipes_list;
         recipes_list = new Recipe[]{
