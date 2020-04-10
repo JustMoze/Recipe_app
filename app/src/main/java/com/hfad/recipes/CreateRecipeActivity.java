@@ -168,6 +168,7 @@ public class CreateRecipeActivity extends AppCompatActivity {
                     }
                     db.insert("recipe_category", null, junctionValues);
                 }
+                db.close();
                 return true;
 
             } catch (SQLiteException e){
@@ -184,9 +185,6 @@ public class CreateRecipeActivity extends AppCompatActivity {
     @Override
     public void onDestroy(){
         super.onDestroy();
-        if (db.isOpen()){
-            db.close();
-        }
         categoryList.clear();
     }
 }

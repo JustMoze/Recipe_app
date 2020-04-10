@@ -77,7 +77,6 @@ public class AllRecipesFragment extends Fragment {
         protected Boolean doInBackground(Integer... integers) {
             int value = integers[0];
             SQLiteOpenHelper recipeDatabaseHelper = new RecipeDatabaseHelper(getActivity());
-            RecipeDatabaseHelper helper = new RecipeDatabaseHelper(getActivity());
             try {
                 db = recipeDatabaseHelper.getReadableDatabase();
                 Log.d("Duombaze", "db was readed");

@@ -123,6 +123,7 @@ public class AddIngredientsActivity extends AppCompatActivity {
                     ingredientValues.put("RECIPE_ID", recipeID);
                     db.insert("ingredient", null, ingredientValues);
                 }
+                db.close();
                 return true;
             }catch (SQLiteException e){
                 Toast.makeText(AddIngredientsActivity.this, "Database is unavailable! ", Toast.LENGTH_SHORT).show();
@@ -139,8 +140,5 @@ public class AddIngredientsActivity extends AppCompatActivity {
     @Override
     public void onDestroy(){
         super.onDestroy();
-        if (db.isOpen()){
-            db.close();
-        }
     }
 }
