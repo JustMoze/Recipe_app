@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class RecipeDatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "recipes";
@@ -60,7 +61,7 @@ public class RecipeDatabaseHelper extends SQLiteOpenHelper {
                     + "FOREIGN KEY(recipe_ID) REFERENCES " + TABLE_1 + "(_ID),"
                     + "FOREIGN KEY(category_ID) REFERENCES " + TABLE_3 + "(_ID));");
         } else {
-            // if version will change it self than code written here will be executed
+            Log.d("Databas version error", "Database version does not matches our database's version");
         }
     }
     // Insert one object to table
