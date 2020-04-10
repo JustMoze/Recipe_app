@@ -81,7 +81,7 @@ public class Data {
                 new Category("Dinner"), // 4
                 new Category("Soup"), // 5
                 new Category("Breakfast"), // 6
-                new Category("Desert") // 7
+                new Category("Dessert") // 7
         };
         return category_list;
     }

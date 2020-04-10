@@ -8,17 +8,11 @@ public class Recipe {
     String instruction;
 
     public Recipe(){}
-
-    Recipe(String name, String duration, int photo){
+    Recipe(String name, String duration, int photo, String instruction, int isFinished){
         this.name = name;
         this.duration = duration;
         this.recipe_image = photo;
-    }
-    Recipe(int id, String name, String duration, int photo){
-        this._id = id;
-        this.name = name;
-        this.duration = duration;
-        this.recipe_image = photo;
+        this.instruction = instruction;
     }
     Recipe(String name, String duration, int photo, String instruction){
         this.name = name;
@@ -39,6 +33,7 @@ public class Recipe {
     public void setInstruction(String instruction){
         this.instruction = instruction;
     }
+
     // getters
     public String getName(){
         return this.name;

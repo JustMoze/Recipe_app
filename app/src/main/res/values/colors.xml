@@ -8,4 +8,5 @@
     <color name="detail_background">#effcef</color>
     <color name="title_background">#e5dfdf</color>
     <color name="instructions_color">#c2e8ce</color>
+    <color name="checkBox_color">#3f72af</color>
 </resources>

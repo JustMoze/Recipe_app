@@ -90,13 +90,15 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:id="@+id/first_row">
 
                     <CheckBox
                         android:id="@+id/breakfast_checkBox"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:buttonTint="@color/checkBox_color"
                         android:text="@string/breakfast" />
 
                     <CheckBox
@@ -104,6 +106,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:buttonTint="@color/checkBox_color"
                         android:text="@string/lunch" />
 
                     <CheckBox
@@ -111,47 +114,54 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:buttonTint="@color/checkBox_color"
                         android:text="@string/dinner" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:id="@+id/second_row">
 
                     <CheckBox
                         android:id="@+id/soup_checkBox"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/breakfast" />
+                        android:buttonTint="@color/checkBox_color"
+                        android:text="@string/soup" />
 
                     <CheckBox
                         android:id="@+id/drinks_checkBox"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/lunch" />
+                        android:buttonTint="@color/checkBox_color"
+                        android:text="@string/drinks" />
 
                     <CheckBox
-                        android:id="@+id/deserts_checkBox"
+                        android:id="@+id/desserts_checkBox"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/dinner" />
+                        android:buttonTint="@color/checkBox_color"
+                        android:text="@string/dessert" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:id="@+id/third_row">
 
                     <CheckBox
                         android:id="@+id/salads_checkBox"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/breakfast" />
+                        android:buttonTint="@color/checkBox_color"
+                        android:text="@string/salads" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -187,15 +197,21 @@
                     android:gravity="start"
                     android:id="@+id/instruction_field" />
             </LinearLayout>
-               <com.google.android.material.floatingactionbutton.FloatingActionButton
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_gravity="end|bottom"
-                   android:layout_margin="16dp"
-                   android:backgroundTint="@color/colorPrimary"
-                   app:borderWidth="1dp"
-                   android:src="@drawable/done_icon"
-                   android:onClick="onClickDone" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@color/checkBox_color">
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|bottom"
+                    android:layout_margin="16dp"
+                    android:backgroundTint="@color/colorPrimary"
+                    app:borderWidth="1dp"
+                    android:src="@drawable/done_icon"
+                    android:onClick="onClickDone" />
+            </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
