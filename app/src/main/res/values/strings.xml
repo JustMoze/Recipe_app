@@ -35,4 +35,6 @@
     <string name="soup">Soup</string>
     <string name="dessert">Dessert</string>
     <string name="salads">Salads</string>
+    <string name="search">Search</string>
+    <string name="search_recipe">Search recipe</string>
 </resources>
