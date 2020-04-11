@@ -45,10 +45,11 @@ public class Lunch_fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        RecyclerView drinksRecycler = (RecyclerView) inflater.inflate(R.layout.fragment_recipes_fragment, container, false);
-        drinksRecycler.setHasFixedSize(true);
-        drinksRecycler.setLayoutManager(layoutManager);
-        drinksRecycler.setAdapter(adapter);
+        RecyclerView lunchRecycler = (RecyclerView) inflater.inflate(R.layout.fragment_recipes_fragment, container, false);
+        lunchRecycler.setHasFixedSize(true);
+        lunchRecycler.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_AUTO);
+        lunchRecycler.setLayoutManager(layoutManager);
+        lunchRecycler.setAdapter(adapter);
         adapter.setListener(position -> {
             int recipe_ID = lunchRecipes.get(position)._id;
             Intent intent = new Intent(getActivity(), RecipeDetailActivity.class);
@@ -56,7 +57,7 @@ public class Lunch_fragment extends Fragment {
             getActivity().startActivity(intent);
         });
         // set layout appearance
-        return drinksRecycler;
+        return lunchRecycler;
     }
 
     private class getLunch extends AsyncTask<Integer, Void, Boolean> {
@@ -97,9 +98,6 @@ public class Lunch_fragment extends Fragment {
                 toast.show();
             } else {
                 // code after background thread was running
-                for (Recipe recipe : lunchRecipes){
-                    Log.d("Recipes title", recipe.getName() + "\n");
-                }
             }
         }
     }

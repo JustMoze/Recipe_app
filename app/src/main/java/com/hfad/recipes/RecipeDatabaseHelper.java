@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteQueryBuilder;
 import android.util.Log;
 
 public class RecipeDatabaseHelper extends SQLiteOpenHelper {
@@ -15,7 +16,6 @@ public class RecipeDatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_2 = "ingredient";
     private static final String TABLE_3 = "category";
     private static final String TABLE_4 = "recipe_category";
-    private static SQLiteDatabase db;
     // Capitalize class name
     Data data_to_fill = new Data();
 
@@ -125,5 +125,25 @@ public class RecipeDatabaseHelper extends SQLiteOpenHelper {
         for (Recipe_Category recipe_category : recipe_categories) {
             insertJunctionData(db, recipe_category);
         }
+    }
+    // build a SQL statement that searches for the query
+    public Cursor getRecipesMatches(SQLiteDatabase database, String query){
+        // three types of selections
+        String[] selections = new String[]{"'%" + query.toString() + "%'", "'" + query.toString() + "%'", "'%" + query.toString() + "'"};
+        String selection = "'%" + query + "%'";
+        return query(database, selections);
+    }
+    private Cursor query(SQLiteDatabase database, String[] selections){
+        String sql = "SELECT recipe._ID, recipe.NAME, recipe.DURATION, recipe.IMAGE FROM `recipe` WHERE recipe.NAME LIKE "+ selections[0] + " OR recipe.DURATION LIKE " + selections[0] + "" +
+                " OR recipe.NAME LIKE "+ selections[1] + " OR recipe.DURATION LIKE " + selections[1] + "" +
+                " OR recipe.NAME LIKE "+ selections[2] + " OR recipe.DURATION LIKE " + selections[2] + ";";
+        Cursor cursor = database.rawQuery(sql, null);
+        if (cursor == null){
+            return null;
+        } else if (!cursor.moveToFirst()){
+            cursor.close();
+            return null;
+        }
+        return cursor;
     }
 }

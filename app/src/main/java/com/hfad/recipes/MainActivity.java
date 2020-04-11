@@ -23,6 +23,7 @@ import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     RecipeDatabaseHelper db;
+    private Fragment fragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,13 +41,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        handleIntent(getIntent());
-
         // set as main fragment
-        Fragment fragment = new AllRecipesFragment();
+        fragment = new AllRecipesFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.add(R.id.content_frame, fragment);
         ft.commit();
+
+        handleIntent(getIntent());
     }
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -113,8 +114,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void handleIntent(Intent intent){
         if (Intent.ACTION_SEARCH.equals(intent.getAction())){
             String query = intent.getStringExtra(SearchManager.QUERY);
-            // use the query to search your data somehow
-            Log.d("My query - ", query);
+            SearchedRecipeFragment searchedRecipeFragment = new SearchedRecipeFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString(SearchedRecipeFragment.query, query);
+            searchedRecipeFragment.setArguments(bundle);
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.content_frame, searchedRecipeFragment)
+                    .commit();
         }
     }
     @Override

@@ -56,7 +56,7 @@ public class Drinks_fragment extends Fragment {
         // Inflate the layout for this fragment
         RecyclerView drinksRecycler = (RecyclerView) inflater.inflate(R.layout.fragment_recipes_fragment, container, false);
         drinksRecycler.setHasFixedSize(true);
-
+        drinksRecycler.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_AUTO);
         drinksRecycler.setLayoutManager(layoutManager);
         drinksRecycler.setAdapter(adapter);
         adapter.setListener(position -> {

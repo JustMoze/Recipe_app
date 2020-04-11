@@ -45,10 +45,11 @@ public class Soup_fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        RecyclerView drinksRecycler = (RecyclerView) inflater.inflate(R.layout.fragment_recipes_fragment, container, false);
-        drinksRecycler.setHasFixedSize(true);
-        drinksRecycler.setLayoutManager(layoutManager);
-        drinksRecycler.setAdapter(adapter);
+        RecyclerView soupRecycler = (RecyclerView) inflater.inflate(R.layout.fragment_recipes_fragment, container, false);
+        soupRecycler.setHasFixedSize(true);
+        soupRecycler.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_AUTO);
+        soupRecycler.setLayoutManager(layoutManager);
+        soupRecycler.setAdapter(adapter);
 
         adapter.setListener(position -> {
             int recipe_ID = soupRecipes.get(position)._id;
@@ -57,7 +58,7 @@ public class Soup_fragment extends Fragment {
             getActivity().startActivity(intent);
         });
         // set layout appearance
-        return drinksRecycler;
+        return soupRecycler;
     }
 
     private class getSoups extends AsyncTask<Integer, Void, Boolean> {

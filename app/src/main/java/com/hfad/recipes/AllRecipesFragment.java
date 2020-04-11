@@ -51,7 +51,7 @@ public class AllRecipesFragment extends Fragment {
         drinksRecycler.setHasFixedSize(true);
         drinksRecycler.setItemViewCacheSize(20);
         drinksRecycler.setDrawingCacheEnabled(true);
-        drinksRecycler.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+        drinksRecycler.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_AUTO);
 
 
         drinksRecycler.setLayoutManager(layoutManager);
@@ -103,6 +103,8 @@ public class AllRecipesFragment extends Fragment {
                         allRecipes.add(recipe);
                     }
                 }
+                cursor.close();
+                db.close();
                 return true;
             } catch (SQLiteException e){
                 return false;
@@ -123,7 +125,5 @@ public class AllRecipesFragment extends Fragment {
     @Override
     public void onDestroyView(){
         super.onDestroyView();
-        cursor.close();
-        db.close();
     }
 }

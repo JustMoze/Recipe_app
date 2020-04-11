@@ -45,10 +45,10 @@ public class Dinner_fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        RecyclerView drinksRecycler = (RecyclerView) inflater.inflate(R.layout.fragment_recipes_fragment, container, false);
-        drinksRecycler.setHasFixedSize(true);
-        drinksRecycler.setLayoutManager(layoutManager);
-        drinksRecycler.setAdapter(adapter);
+        RecyclerView dinnerRecycler = (RecyclerView) inflater.inflate(R.layout.fragment_recipes_fragment, container, false);
+        dinnerRecycler.setHasFixedSize(true);
+        dinnerRecycler.setLayoutManager(layoutManager);
+        dinnerRecycler.setAdapter(adapter);
 
         // set layout appearance
 
@@ -58,7 +58,7 @@ public class Dinner_fragment extends Fragment {
             intent.putExtra(RecipeDetailActivity.RECIPE_ID, recipe_ID);
             getActivity().startActivity(intent);
         });
-        return drinksRecycler;
+        return dinnerRecycler;
     }
 
     private class getDinner extends AsyncTask<Integer, Void, Boolean> {

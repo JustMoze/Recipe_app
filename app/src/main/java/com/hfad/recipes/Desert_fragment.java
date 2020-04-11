@@ -45,10 +45,11 @@ public class Desert_fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        RecyclerView drinksRecycler = (RecyclerView) inflater.inflate(R.layout.fragment_recipes_fragment, container, false);
-        drinksRecycler.setHasFixedSize(true);
-        drinksRecycler.setLayoutManager(layoutManager);
-        drinksRecycler.setAdapter(adapter);
+        RecyclerView desertsRecycler = (RecyclerView) inflater.inflate(R.layout.fragment_recipes_fragment, container, false);
+        desertsRecycler.setHasFixedSize(true);
+        desertsRecycler.setLayoutManager(layoutManager);
+        desertsRecycler.setAdapter(adapter);
+        desertsRecycler.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_AUTO);
         adapter.setListener(position -> {
             int recipe_ID = desertRecipes.get(position)._id;
             Intent intent = new Intent(getActivity(), RecipeDetailActivity.class);
@@ -56,7 +57,7 @@ public class Desert_fragment extends Fragment {
             getActivity().startActivity(intent);
         });
         // set layout appearance
-        return drinksRecycler;
+        return desertsRecycler;
     }
 
     private class getDesert extends AsyncTask<Integer, Void, Boolean> {
